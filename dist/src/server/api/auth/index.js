@@ -1,0 +1,22 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const ghost_1 = __importDefault(require("./ghost"));
+const login_1 = __importDefault(require("./login"));
+const logout_1 = __importDefault(require("./logout"));
+const reset_1 = __importDefault(require("./reset"));
+const session_1 = __importDefault(require("./session"));
+const sso_1 = __importDefault(require("./sso"));
+const oauth_1 = __importDefault(require("./oauth"));
+const router = express_1.default.Router();
+router.post('/login', login_1.default);
+router.get('/session', session_1.default);
+router.post('/reset', reset_1.default);
+router.post('/logout', logout_1.default);
+router.use('/sso', sso_1.default);
+router.use('/oauth', oauth_1.default);
+router.use('/ghost', ghost_1.default);
+exports.default = router;

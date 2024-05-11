@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.REDIRECT_URI = exports.isWorkOSEnabled = exports.workos = void 0;
+const express_1 = __importDefault(require("express"));
+const auth_1 = __importDefault(require("./auth"));
+const callback_1 = __importDefault(require("./callback"));
+const sign_in_with_google_1 = __importDefault(require("./sign-in-with-google"));
+const env_1 = __importDefault(require("../../../../env"));
+var auth_2 = require("../../../../server/auth");
+Object.defineProperty(exports, "workos", { enumerable: true, get: function () { return auth_2.workos; } });
+Object.defineProperty(exports, "isWorkOSEnabled", { enumerable: true, get: function () { return auth_2.isWorkOSEnabled; } });
+exports.REDIRECT_URI = `${env_1.default.APP_URL}/api/auth/sso/callback`;
+const router = express_1.default.Router();
+router.get('/sign-in-with-google', sign_in_with_google_1.default);
+router.get('/callback', callback_1.default);
+router.get('/auth', auth_1.default);
+exports.default = router;
